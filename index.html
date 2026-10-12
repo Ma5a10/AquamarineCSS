@@ -49,17 +49,6 @@
       text-transform: uppercase;
       margin-bottom: var(--aqua-space-3);
     }
-
-    /* Calculator styling in demo */
-    .calculator-card {
-      max-width: 340px;
-      margin: 0 auto;
-    }
-    .calculator-card .buttons-grid button {
-      height: 3.1rem;
-      font-size: 1.25rem;
-      border-radius: 18px;
-    }
   </style>
 </head>
 <body class="liquid-bg">
@@ -261,36 +250,6 @@
           </footer>
         </article>
 
-        <!-- Pure Liquid Glass Card with Optical Distortion Refraction -->
-        <article class="liquid interactive" style="padding-bottom: var(--aqua-space-4);">
-          <div class="card-header" style="border: none; padding-bottom: 0;">
-            <div class="user-info">
-              <div class="avatar">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
-              <div class="user-details">
-                <p class="user-name">Jane Doe</p>
-                <p class="user-role">UX Designer</p>
-              </div>
-            </div>
-            <svg style="width: 20px; height: 20px; opacity: 0.6;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
-          </div>
-          <div class="text-center" style="margin: var(--aqua-space-4) 0;">
-            <h3 style="margin-bottom: 4px;">Optical Refraction Glass</h3>
-            <p class="text-muted" style="margin-bottom: var(--aqua-space-4); font-size: var(--aqua-text-sm);">
-              SVG Displacement Filter と極小ブラーによる、白濁しない透き通った水の屈折効果。
-            </p>
-            <button class="primary" style="width: 100%;">Get Started</button>
-          </div>
-          <p class="card-tip">Tip: 背面の動くブロブがクリアに歪んで透け出します。</p>
-        </article>
-
         <article class="liquid interactive">
           <header>
             <span>🌊 流体ガラスコンテナ (.liquid)</span>
@@ -306,63 +265,6 @@
           </footer>
         </article>
       </div>
-
-      <!-- Section: Application Showcase (The LiquidCalc Demo) -->
-      <section style="margin: var(--aqua-space-8) 0;">
-        <div class="text-center" style="margin-bottom: var(--aqua-space-6);">
-          <h2>💧 応用例: AquamarineCSSで構築する LiquidCalc</h2>
-          <p class="text-muted" style="max-width: 620px; margin: 0 auto;">
-            フレームワークの汎用コンポーネント（非対称角丸 <code>.card.liquid</code>、彫り込み <code>.well</code>、アクセントボタン <code>.warning</code> / <code>.info</code> / <code>.secondary</code>、およびオプショナルな <code>.window-controls</code>）を組み合わせるだけで、以下のようなリッチな計算機アプリUIも素早く構築できます。
-          </p>
-        </div>
-
-        <!-- Live Interactive Calculator built with generic framework classes -->
-        <div class="card liquid calculator-card interactive">
-          <header>
-            <span>LiquidCalc</span>
-            <div class="window-controls">
-              <button type="button" class="win-btn minimize" title="最小化">−</button>
-              <button type="button" class="win-btn close" title="閉じる">×</button>
-            </div>
-          </header>
-
-          <div class="well">
-            <div class="previous-operand" id="calc-prev"></div>
-            <div class="current-operand" id="calc-curr">0</div>
-          </div>
-
-          <div class="buttons-grid">
-            <button type="button" class="secondary" onclick="calcClear()">AC</button>
-            <button type="button" class="secondary" onclick="calcToggleSign()">±</button>
-            <button type="button" class="secondary" onclick="calcPercent()">%</button>
-            <button type="button" class="warning" onclick="calcOp('÷')">÷</button>
-
-            <button type="button" onclick="calcNum('7')">7</button>
-            <button type="button" onclick="calcNum('8')">8</button>
-            <button type="button" onclick="calcNum('9')">9</button>
-            <button type="button" class="warning" onclick="calcOp('×')">×</button>
-
-            <button type="button" onclick="calcNum('4')">4</button>
-            <button type="button" onclick="calcNum('5')">5</button>
-            <button type="button" onclick="calcNum('6')">6</button>
-            <button type="button" class="warning" onclick="calcOp('-')">−</button>
-
-            <button type="button" onclick="calcNum('1')">1</button>
-            <button type="button" onclick="calcNum('2')">2</button>
-            <button type="button" onclick="calcNum('3')">3</button>
-            <button type="button" class="warning" onclick="calcOp('+')">+</button>
-
-            <button type="button" class="zero" onclick="calcNum('0')">0</button>
-            <button type="button" onclick="calcDot()">.</button>
-            <button type="button" class="info" onclick="calcEqual()">=</button>
-          </div>
-
-          <footer>
-            <span>状態: 稼働中</span>
-            <small class="text-muted">Built with generic framework tokens</small>
-          </footer>
-        </div>
-      </section>
 
       <!-- Section: Table & Accordion -->
       <div class="grid">
@@ -511,95 +413,6 @@
       if (catSelect && catSelect.value !== name) {
         catSelect.value = name;
       }
-    }
-
-    // ==========================================
-    // Interactive Calculator Logic for Showcase
-    // ==========================================
-    let currentOperand = '0';
-    let previousOperand = '';
-    let operation = null;
-    let resetOnNextNumber = false;
-
-    const prevEl = document.getElementById('calc-prev');
-    const currEl = document.getElementById('calc-curr');
-
-    function updateDisplay() {
-      currEl.textContent = currentOperand;
-      prevEl.textContent = operation ? `${previousOperand} ${operation}` : previousOperand;
-    }
-
-    function calcNum(num) {
-      if (resetOnNextNumber) {
-        currentOperand = num;
-        resetOnNextNumber = false;
-      } else {
-        if (currentOperand === '0' && num !== '.') {
-          currentOperand = num;
-        } else {
-          currentOperand += num;
-        }
-      }
-      updateDisplay();
-    }
-
-    function calcDot() {
-      if (resetOnNextNumber) {
-        currentOperand = '0.';
-        resetOnNextNumber = false;
-      } else if (!currentOperand.includes('.')) {
-        currentOperand += '.';
-      }
-      updateDisplay();
-    }
-
-    function calcClear() {
-      currentOperand = '0';
-      previousOperand = '';
-      operation = null;
-      resetOnNextNumber = false;
-      updateDisplay();
-    }
-
-    function calcToggleSign() {
-      if (currentOperand === '0') return;
-      currentOperand = currentOperand.startsWith('-') ? currentOperand.slice(1) : '-' + currentOperand;
-      updateDisplay();
-    }
-
-    function calcPercent() {
-      currentOperand = String(parseFloat(currentOperand) / 100);
-      updateDisplay();
-    }
-
-    function calcOp(op) {
-      if (operation !== null && !resetOnNextNumber) {
-        calcEqual();
-      }
-      previousOperand = currentOperand;
-      operation = op;
-      resetOnNextNumber = true;
-      updateDisplay();
-    }
-
-    function calcEqual() {
-      if (!operation || previousOperand === '') return;
-      const prev = parseFloat(previousOperand);
-      const current = parseFloat(currentOperand);
-      let result = 0;
-
-      switch (operation) {
-        case '+': result = prev + current; break;
-        case '-': result = prev - current; break;
-        case '×': result = prev * current; break;
-        case '÷': result = current !== 0 ? prev / current : 'Error'; break;
-      }
-
-      currentOperand = String(result);
-      operation = null;
-      previousOperand = '';
-      resetOnNextNumber = true;
-      updateDisplay();
     }
   </script>
 </body>
