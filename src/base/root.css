@@ -1,0 +1,46 @@
+/* ==========================================================================
+   AquamarineCSS - Base: Root & Ambient Stage
+   ========================================================================== */
+
+@layer aqua.base {
+  body {
+    background-color: var(--aqua-bg-canvas);
+    color: var(--aqua-text-main);
+    font-size: var(--aqua-text-base);
+    background-image:
+      radial-gradient(at 15% 15%, var(--aqua-bg-ambient-1) 0px, transparent 55%),
+      radial-gradient(at 85% 25%, var(--aqua-bg-ambient-2) 0px, transparent 50%),
+      radial-gradient(at 50% 85%, var(--aqua-bg-ambient-1) 0px, transparent 60%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-color var(--aqua-transition), color var(--aqua-transition);
+  }
+
+  ::selection {
+    background-color: var(--aqua-primary-glow);
+    color: var(--aqua-text-main);
+  }
+
+  /* Thin aero scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--aqua-surface-glass-active);
+    border-radius: var(--aqua-radius-pill);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--aqua-primary-glow);
+    background-clip: padding-box;
+  }
+}

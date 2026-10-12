@@ -1,0 +1,35 @@
+/**
+ * AquamarineCSS v0.1.0
+ * Semantic-first CSS Framework with Liquid Glass & Windows Aero Optics.
+ * https://github.com/aquamarine-css
+ * MIT License
+ */
+
+@layer aqua.tokens, aqua.base, aqua.elements, aqua.components, aqua.utilities;
+
+/* 1. Design Tokens */
+@import "./tokens/colors.css";
+@import "./tokens/glass.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+
+/* 2. Base & Ambient Environment */
+@import "./base/reset.css";
+@import "./base/root.css";
+
+/* 3. Semantic Elements */
+@import "./elements/buttons.css";
+@import "./elements/forms.css";
+@import "./elements/tables.css";
+@import "./elements/text.css";
+
+/* 4. Structural Components */
+@import "./components/layout.css";
+@import "./components/liquid.css";
+@import "./components/card.css";
+@import "./components/dialog.css";
+@import "./components/accordion.css";
+@import "./components/feedback.css";
+
+/* 5. Minimal Utilities */
+@import "./utilities/helpers.css";

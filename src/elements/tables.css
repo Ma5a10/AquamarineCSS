@@ -1,0 +1,78 @@
+/* ==========================================================================
+   AquamarineCSS - Elements: Tables
+   ========================================================================== */
+
+@layer aqua.elements {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--aqua-space-4) 0;
+    background-color: var(--aqua-surface-card);
+    backdrop-filter: var(--aqua-blur-base);
+    -webkit-backdrop-filter: var(--aqua-blur-base);
+    border: 1px solid var(--aqua-border-glass);
+    border-radius: var(--aqua-radius-md);
+    overflow: hidden;
+    box-shadow: var(--aqua-glass-elevation-sm);
+    box-sizing: border-box;
+  }
+
+  thead,
+  tbody,
+  tfoot {
+    width: 100%;
+  }
+
+  tr {
+    width: 100%;
+    display: table-row;
+    transition: background-color var(--aqua-transition-fast);
+  }
+
+  th,
+  td {
+    padding: var(--aqua-space-3) var(--aqua-space-4);
+    text-align: left;
+    font-size: var(--aqua-text-sm);
+    border-bottom: 1px solid var(--aqua-border-subtle);
+    box-sizing: border-box;
+  }
+
+  th {
+    font-weight: var(--aqua-weight-semibold);
+    color: var(--aqua-text-main);
+    background: var(--aqua-surface-glass-hover);
+    border-bottom: 1px solid var(--aqua-border-glass);
+    letter-spacing: 0.02em;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Interactive row highlight with edge-to-edge width */
+  tbody tr:hover {
+    background-color: var(--aqua-primary-glass);
+  }
+
+  /* Striped variant */
+  table.striped tbody tr:nth-child(even) {
+    background-color: var(--aqua-surface-glass-subtle);
+  }
+
+  tfoot {
+    font-weight: var(--aqua-weight-medium);
+    background-color: var(--aqua-surface-glass-subtle);
+    border-top: 1px solid var(--aqua-border-glass);
+  }
+
+  /* Seamless edge-to-edge table inside card containers */
+  article > table,
+  .card > table {
+    margin: 0;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

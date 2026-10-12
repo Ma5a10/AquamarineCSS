@@ -1,0 +1,123 @@
+/* ==========================================================================
+   AquamarineCSS - Elements: Typography & Text Semantics
+   ========================================================================== */
+
+@layer aqua.elements {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--aqua-text-main);
+    font-weight: var(--aqua-weight-bold);
+    line-height: var(--aqua-leading-tight);
+    margin-top: var(--aqua-space-6);
+    margin-bottom: var(--aqua-space-3);
+    letter-spacing: -0.015em;
+  }
+
+  h1:first-child,
+  h2:first-child,
+  h3:first-child {
+    margin-top: 0;
+  }
+
+  h1 { font-size: var(--aqua-text-4xl); }
+  h2 { font-size: var(--aqua-text-3xl); }
+  h3 { font-size: var(--aqua-text-2xl); }
+  h4 { font-size: var(--aqua-text-xl); }
+  h5 { font-size: var(--aqua-text-lg); }
+  h6 { font-size: var(--aqua-text-base); }
+
+  p {
+    margin-bottom: var(--aqua-space-4);
+    color: var(--aqua-text-main);
+    line-height: var(--aqua-leading-relaxed);
+  }
+
+  small {
+    font-size: var(--aqua-text-xs);
+    color: var(--aqua-text-muted);
+  }
+
+  /* Links */
+  a {
+    color: var(--aqua-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: color var(--aqua-transition-fast), text-shadow var(--aqua-transition-fast);
+  }
+
+  a:hover {
+    color: var(--aqua-primary-hover);
+    text-shadow: 0 0 10px var(--aqua-primary-glow);
+  }
+
+  /* Blockquote */
+  blockquote {
+    margin: var(--aqua-space-4) 0;
+    padding: var(--aqua-space-3) var(--aqua-space-4);
+    border-left: 4px solid var(--aqua-primary);
+    background-color: var(--aqua-surface-glass-subtle);
+    backdrop-filter: var(--aqua-blur-subtle);
+    border-radius: 0 var(--aqua-radius-sm) var(--aqua-radius-sm) 0;
+    font-style: italic;
+    color: var(--aqua-text-muted);
+    box-shadow: var(--aqua-highlight-top);
+  }
+
+  /* Code & Preformatted Text */
+  code {
+    font-family: var(--aqua-font-mono);
+    font-size: 0.88em;
+    padding: 0.15em 0.4em;
+    border-radius: var(--aqua-radius-xs);
+    background-color: var(--aqua-surface-input);
+    border: 1px solid var(--aqua-border-subtle);
+    color: var(--aqua-text-main);
+    box-shadow: var(--aqua-shadow-inset);
+  }
+
+  pre {
+    margin: var(--aqua-space-4) 0;
+    padding: var(--aqua-space-4);
+    border-radius: var(--aqua-radius-md);
+    background-color: var(--aqua-surface-input);
+    border: 1px solid var(--aqua-border-glass);
+    overflow-x: auto;
+    box-shadow: var(--aqua-shadow-inset);
+  }
+
+  pre code {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Dividers */
+  hr {
+    margin: var(--aqua-space-8) 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--aqua-border-glass) 50%,
+      transparent 100%
+    );
+  }
+
+  /* Lists */
+  ul,
+  ol {
+    margin-bottom: var(--aqua-space-4);
+    padding-left: var(--aqua-space-6);
+  }
+
+  li {
+    margin-bottom: var(--aqua-space-1);
+    line-height: var(--aqua-leading-normal);
+  }
+}

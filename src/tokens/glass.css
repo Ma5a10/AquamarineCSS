@@ -1,0 +1,156 @@
+/* ==========================================================================
+   AquamarineCSS - Design Tokens: Liquid Glass & Windows Aero Optics
+   ========================================================================== */
+
+@layer aqua.tokens {
+  :root {
+    /* ------------------------------------------------------------------------
+       Clear Liquid Optics: Ultra-Low Blur & Displacement Refraction
+       ------------------------------------------------------------------------ */
+    --aqua-blur-subtle: blur(2px);
+    --aqua-blur-base: blur(4px);
+    --aqua-blur-heavy: blur(8px);
+    --aqua-saturate: saturate(140%);
+
+    --aqua-glass-filter: var(--aqua-blur-base) var(--aqua-saturate);
+    --aqua-glass-filter-heavy: var(--aqua-blur-heavy) saturate(160%);
+    --aqua-glass-distortion: url(#glass-distortion);
+
+    /* ------------------------------------------------------------------------
+       Aero Specular Highlights (1px reflection line & bevel)
+       ------------------------------------------------------------------------ */
+    /* Top bevel highlight representing ambient ceiling light */
+    --aqua-highlight-top: inset 0 1px 0 0 rgba(255, 255, 255, 0.45);
+    --aqua-highlight-top-subtle: inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+    --aqua-highlight-bottom: inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
+
+    /* ------------------------------------------------------------------------
+       Aero Volumetric Depth & Drop Shadows
+       ------------------------------------------------------------------------ */
+    --aqua-shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --aqua-shadow-sm: 0 4px 12px -2px rgba(10, 25, 40, 0.08), 0 2px 6px -1px rgba(10, 25, 40, 0.04);
+    --aqua-shadow-md: 0 12px 28px -6px rgba(10, 25, 40, 0.12), 0 4px 12px -2px rgba(10, 25, 40, 0.06);
+    --aqua-shadow-lg: 0 20px 40px -10px rgba(10, 25, 40, 0.16), 0 8px 18px -4px rgba(10, 25, 40, 0.08);
+    --aqua-shadow-window: 0 24px 60px -12px rgba(0, 15, 30, 0.22), 0 0 0 1px var(--aqua-border-glass);
+
+    /* Combined Aero Glass elevation composite */
+    --aqua-glass-elevation-sm: var(--aqua-highlight-top-subtle), var(--aqua-shadow-sm);
+    --aqua-glass-elevation-md: var(--aqua-highlight-top-subtle), var(--aqua-shadow-md);
+    --aqua-glass-elevation-lg: var(--aqua-highlight-top), var(--aqua-shadow-lg);
+
+    /* ------------------------------------------------------------------------
+       Aero Gloss Gradients (Linear surface lighting)
+       ------------------------------------------------------------------------ */
+    /* Aero window gloss: upper-half sheen transitioning to clear body */
+    --aqua-gloss-sheen: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.12) 48%,
+      rgba(255, 255, 255, 0.02) 50%,
+      rgba(255, 255, 255, 0.18) 100%
+    );
+
+    /* Button gloss */
+    --aqua-gloss-btn: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(0, 0, 0, 0.04) 51%,
+      rgba(255, 255, 255, 0.12) 100%
+    );
+
+    --aqua-gloss-btn-primary: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0.14) 49%,
+      rgba(0, 0, 0, 0.06) 50%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+
+    /* Pressed / Inset surface */
+    --aqua-shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    /* ------------------------------------------------------------------------
+       Liquid Glass Specific Optics (LiquidCalc high-refraction aesthetics)
+       ------------------------------------------------------------------------ */
+    /* Deep sunken well for displays and inputs */
+    --aqua-shadow-well: inset 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    --aqua-well-bg: rgba(0, 0, 0, 0.25);
+
+    /* Liquid Glass multi-layer rim light and ambient shadow */
+    --aqua-shadow-liquid: 0px 0px 24px -6px rgba(255, 255, 255, 0.25), 0 12px 30px rgba(0, 0, 0, 0.2);
+    --aqua-shadow-liquid-tint: inset 0 0 4px -2px rgba(255, 255, 255, 0.7);
+
+    /* Waterdrop button top lens specular highlight */
+    --aqua-lens-highlight: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+
+    /* Fluid Glass Surface (Ultra-transparent body, relies on refraction) */
+    --aqua-liquid-surface: rgba(255, 255, 255, 0);
+
+    /* Transitions */
+    --aqua-transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    --aqua-transition-bounce: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --aqua-transition-fast: all 0.12s ease-out;
+  }
+
+  /* Dark mode overrides for highlight intensity */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --aqua-highlight-top: inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+      --aqua-highlight-top-subtle: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+      --aqua-highlight-bottom: inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
+
+      --aqua-shadow-sm: 0 4px 14px -2px rgba(0, 0, 0, 0.45);
+      --aqua-shadow-md: 0 14px 32px -6px rgba(0, 0, 0, 0.6);
+      --aqua-shadow-lg: 0 24px 50px -10px rgba(0, 0, 0, 0.75);
+      --aqua-shadow-window: 0 28px 70px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px var(--aqua-border-glass);
+
+      --aqua-gloss-sheen: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(255, 255, 255, 0.04) 48%,
+        rgba(0, 0, 0, 0.15) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+      );
+
+      --aqua-gloss-btn: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0.04) 50%,
+        rgba(0, 0, 0, 0.25) 51%,
+        rgba(255, 255, 255, 0.06) 100%
+      );
+    }
+  }
+
+  [data-theme="dark"] {
+    --aqua-highlight-top: inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+    --aqua-highlight-top-subtle: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+    --aqua-highlight-bottom: inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
+
+    --aqua-shadow-sm: 0 4px 14px -2px rgba(0, 0, 0, 0.45);
+    --aqua-shadow-md: 0 14px 32px -6px rgba(0, 0, 0, 0.6);
+    --aqua-shadow-lg: 0 24px 50px -10px rgba(0, 0, 0, 0.75);
+    --aqua-shadow-window: 0 28px 70px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px var(--aqua-border-glass);
+
+    --aqua-gloss-sheen: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.04) 48%,
+      rgba(0, 0, 0, 0.15) 50%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+
+    --aqua-gloss-btn: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.04) 50%,
+      rgba(0, 0, 0, 0.25) 51%,
+      rgba(255, 255, 255, 0.06) 100%
+    );
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "aquamarine-css",
+  "version": "0.1.0",
+  "description": "Minimal, semantic-first CSS framework with Liquid Glass and Windows Aero aesthetics.",
+  "type": "module",
+  "main": "dist/aquamarine.css",
+  "style": "dist/aquamarine.css",
+  "scripts": {
+    "dev": "vite",
+    "build": "bun run ./scripts/build-dist.js",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "css",
+    "framework",
+    "classless",
+    "semantic",
+    "glassmorphism",
+    "windows-aero",
+    "liquid-glass",
+    "minimal"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "lightningcss": "^1.30.2",
+    "vite": "^6.2.0"
+  }
+}

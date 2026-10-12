@@ -1,0 +1,127 @@
+/* ==========================================================================
+   AquamarineCSS - Components: Feedback, Indicators & Chips
+   ========================================================================== */
+
+@layer aqua.components {
+  /* --------------------------------------------------------------------------
+     Aero Shimmer Progress Bar
+     -------------------------------------------------------------------------- */
+  progress {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 14px;
+    border: 1px solid var(--aqua-border-subtle);
+    border-radius: var(--aqua-radius-pill);
+    background-color: var(--aqua-surface-input);
+    box-shadow: var(--aqua-shadow-inset);
+    overflow: hidden;
+    margin: var(--aqua-space-2) 0;
+  }
+
+  progress::-webkit-progress-bar {
+    background-color: transparent;
+  }
+
+  progress::-webkit-progress-value {
+    border-radius: var(--aqua-radius-pill);
+    background-color: var(--aqua-primary);
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.45) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(0, 0, 0, 0.1) 51%,
+        rgba(255, 255, 255, 0.2) 100%
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.15) 0,
+        rgba(255, 255, 255, 0.15) 12px,
+        transparent 12px,
+        transparent 24px
+      );
+    background-size: auto, 48px 48px;
+    box-shadow:
+      var(--aqua-highlight-top),
+      0 0 12px var(--aqua-primary-glow);
+    animation: aqua-progress-shimmer 2s linear infinite;
+  }
+
+  progress::-moz-progress-bar {
+    border-radius: var(--aqua-radius-pill);
+    background-color: var(--aqua-primary);
+    background-image: var(--aqua-gloss-btn-primary);
+    box-shadow: 0 0 12px var(--aqua-primary-glow);
+  }
+
+  @keyframes aqua-progress-shimmer {
+    from {
+      background-position: 0 0, 0 0;
+    }
+    to {
+      background-position: 0 0, 48px 0;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Mark / Highlighting
+     -------------------------------------------------------------------------- */
+  mark {
+    background-color: var(--aqua-primary-glass);
+    color: var(--aqua-text-main);
+    padding: 0.1em 0.35em;
+    border-radius: var(--aqua-radius-xs);
+    border: 1px solid var(--aqua-primary-border);
+    backdrop-filter: var(--aqua-blur-subtle);
+  }
+
+  /* --------------------------------------------------------------------------
+     Kbd (Keyboard key)
+     -------------------------------------------------------------------------- */
+  kbd {
+    display: inline-block;
+    padding: 0.15em 0.45em;
+    font-size: var(--aqua-text-xs);
+    font-family: var(--aqua-font-mono);
+    line-height: 1;
+    color: var(--aqua-text-main);
+    background: var(--aqua-gloss-btn);
+    background-color: var(--aqua-surface-glass-hover);
+    border: 1px solid var(--aqua-border-glass);
+    border-radius: var(--aqua-radius-xs);
+    box-shadow:
+      var(--aqua-highlight-top),
+      0 2px 0 0 rgba(0, 0, 0, 0.15),
+      var(--aqua-shadow-xs);
+    vertical-align: middle;
+  }
+
+  /* --------------------------------------------------------------------------
+     Badge / Pill tag
+     -------------------------------------------------------------------------- */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--aqua-space-1);
+    padding: 0.2em 0.65em;
+    font-size: var(--aqua-text-xs);
+    font-weight: var(--aqua-weight-semibold);
+    border-radius: var(--aqua-radius-pill);
+    background-color: var(--aqua-surface-glass);
+    backdrop-filter: var(--aqua-blur-subtle);
+    border: 1px solid var(--aqua-border-glass);
+    color: var(--aqua-text-main);
+    box-shadow: var(--aqua-highlight-top), var(--aqua-shadow-xs);
+  }
+
+  .badge.primary {
+    background-color: var(--aqua-primary);
+    background-image: var(--aqua-gloss-btn-primary);
+    color: var(--aqua-primary-contrast);
+    border-color: var(--aqua-primary-border);
+    box-shadow:
+      var(--aqua-highlight-top),
+      0 0 10px var(--aqua-primary-glow);
+  }
+}

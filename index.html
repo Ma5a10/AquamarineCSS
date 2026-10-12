@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark" data-palette="aquamarine">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquamarineCSS - Liquid Glass Minimal Framework</title>
+  <link rel="stylesheet" href="./src/aquamarine.css">
+  <style>
+    /* Demo page specific utility for theme switcher controls */
+    .theme-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--aqua-space-2);
+      padding: var(--aqua-space-2) var(--aqua-space-4);
+      background: var(--aqua-surface-glass);
+      border-radius: var(--aqua-radius-pill);
+      border: 1px solid var(--aqua-border-glass);
+      box-shadow: var(--aqua-glass-elevation-sm);
+    }
+    .palette-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: var(--aqua-radius-pill);
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .palette-btn:hover {
+      transform: scale(1.22);
+    }
+    .palette-aqua { background: hsl(178, 82%, 42%); box-shadow: 0 0 10px hsl(178, 82%, 42%); }
+    .palette-liquid { background: linear-gradient(135deg, #ff0080, #00f1fe); box-shadow: 0 0 10px #ff0080; }
+    .palette-green { background: hsl(154, 78%, 39%); box-shadow: 0 0 10px hsl(154, 78%, 39%); }
+    .palette-orange { background: hsl(28, 94%, 48%); box-shadow: 0 0 10px hsl(28, 94%, 48%); }
+    .palette-sapphire { background: hsl(220, 88%, 52%); box-shadow: 0 0 10px hsl(220, 88%, 52%); }
+    .palette-amethyst { background: hsl(275, 80%, 54%); box-shadow: 0 0 10px hsl(275, 80%, 54%); }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: var(--aqua-radius-pill);
+      font-size: var(--aqua-text-xs);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: var(--aqua-space-3);
+    }
+
+    /* Calculator styling in demo */
+    .calculator-card {
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    .calculator-card .buttons-grid button {
+      height: 3.1rem;
+      font-size: 1.25rem;
+      border-radius: 18px;
+    }
+  </style>
+</head>
+<body class="liquid-bg">
+  <!-- SVG Optical Refraction Filter for Pure Liquid Glass -->
+  <svg width="0" height="0" style="position: absolute; pointer-events: none;" aria-hidden="true">
+    <defs>
+      <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence 
+          type="fractalNoise" 
+          baseFrequency="0.009 0.009"
+          numOctaves="2" 
+          seed="92" 
+          result="noise" 
+        />
+        <feGaussianBlur 
+          in="noise" 
+          stdDeviation="2" 
+          result="blurred" 
+        />
+        <feDisplacementMap 
+          in="SourceGraphic" 
+          in2="blurred" 
+          scale="160"
+          xChannelSelector="R" 
+          yChannelSelector="G" 
+        />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Dynamic Liquid Morphing Backdrop -->
+  <div class="liquid-backdrop" id="backdrop">
+    <div class="liquid-shape liquid-shape-1"></div>
+    <div class="liquid-shape liquid-shape-2"></div>
+  </div>
+
+  <div class="container">
+    <!-- Top Navigation Bar -->
+    <nav style="margin-top: var(--aqua-space-4);">
+      <ul>
+        <li>
+          <strong style="font-size: var(--aqua-text-lg); display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.3rem;">💎</span> AquamarineCSS
+          </strong>
+        </li>
+      </ul>
+
+      <!-- Theme & Palette Toolbar -->
+      <div class="theme-toolbar">
+        <span style="font-size: var(--aqua-text-xs); font-weight: 600; color: var(--aqua-text-muted);">THEME:</span>
+        <button id="themeToggle" class="secondary" style="padding: 3px 10px; font-size: var(--aqua-text-xs);">
+          🌙 Dark
+        </button>
+
+        <span style="font-size: var(--aqua-text-xs); font-weight: 600; color: var(--aqua-text-muted); margin-left: 6px;">PALETTE:</span>
+        <button class="palette-btn palette-aqua" onclick="setPalette('aquamarine')" title="Aquamarine (Default)"></button>
+        <button class="palette-btn palette-liquid" onclick="setPalette('liquid')" title="Liquid Original (Neon Pink & Cyan)"></button>
+        <button class="palette-btn palette-green" onclick="setPalette('green')" title="Emerald Green"></button>
+        <button class="palette-btn palette-orange" onclick="setPalette('orange')" title="Dorfic Orange"></button>
+        <button class="palette-btn palette-sapphire" onclick="setPalette('sapphire')" title="Sapphire Ocean"></button>
+        <button class="palette-btn palette-amethyst" onclick="setPalette('amethyst')" title="Amethyst Purple"></button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="page-header text-center" style="padding: var(--aqua-space-10) 0 var(--aqua-space-8);">
+      <div class="hero-badge badge primary">Liquid Glass &times; Semantic Minimal</div>
+      <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); margin-top: 0;">
+        Pure HTML, Elevated by Liquid Glass.
+      </h1>
+      <p style="font-size: var(--aqua-text-lg); max-width: 680px; margin: 0 auto var(--aqua-space-6); color: var(--aqua-text-muted);">
+        液体のような有機的ブロブ背景、表面張力を思わせる水滴レンズボタン、高屈折の流体ガラスカードを体系化した汎用CSSフレームワーク。HTMLタグをそのまま記述するだけでモダンなガラス質感UIを創出します。
+      </p>
+      <div class="flex justify-center gap-3">
+        <button class="primary pill" onclick="document.getElementById('demo-modal').showModal()">
+          ✨ モーダルを開く (&lt;dialog&gt;)
+        </button>
+        <button class="outline pill" onclick="document.getElementById('components').scrollIntoView({ behavior: 'smooth' })">
+          コンポーネント一覧を見る
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Components Showcase -->
+    <main id="components">
+
+      <!-- Section: Buttons & Controls (General Semantic & Accent Variations) -->
+      <article>
+        <header>
+          <span>🔘 ボタン & アクセントカラー (&lt;button&gt;)</span>
+        </header>
+        <p>
+          セマンティックな <code>&lt;button&gt;</code> には、上部に表面張力を表現した疑似水滴レンズ（Specular Lens Highlight）と、ホバー/アクティブ時の有機的な押し込み・弾性フィードバックが標準装備されます。用途に応じた汎用アクセントカラーが揃っています。
+        </p>
+
+        <div style="margin-bottom: var(--aqua-space-4);">
+          <small class="text-muted" style="display: block; margin-bottom: var(--aqua-space-2); font-weight: 600;">セマンティック / アクセントカラーバリエーション:</small>
+          <div class="flex" style="flex-wrap: wrap; gap: var(--aqua-space-3); align-items: center;">
+            <button class="primary">Primary (ブランド色)</button>
+            <button class="secondary">Secondary (すりガラス)</button>
+            <button class="warning">Warning / Amber (暖色)</button>
+            <button class="info">Info / Sky (寒色)</button>
+            <button class="success">Success (エメラルド)</button>
+            <button class="danger">Danger (クリムゾン)</button>
+          </div>
+        </div>
+
+        <div>
+          <small class="text-muted" style="display: block; margin-bottom: var(--aqua-space-2); font-weight: 600;">スタイル・形状バリエーション:</small>
+          <div class="flex" style="flex-wrap: wrap; gap: var(--aqua-space-3); align-items: center;">
+            <button>Default Button</button>
+            <button class="outline">Outline</button>
+            <button class="ghost">Ghost Button</button>
+            <button class="pill primary">Pill Shape</button>
+            <button class="liquid secondary">Liquid Curvature</button>
+            <button disabled>Disabled</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section: Form & Inputs -->
+      <article>
+        <header>
+          <span>📝 フォーム & 入力欄 (&lt;form&gt;, &lt;input&gt;, &lt;select&gt;)</span>
+        </header>
+        <p>
+          すりガラスのサーフェスと微細なインナーシャドウにより、ウィンドウに彫り込まれたような立体感を生み出します。フォーカス時には選択パレット色のグローが発光します。
+        </p>
+
+        <form onsubmit="event.preventDefault()">
+          <div class="grid" style="margin-bottom: var(--aqua-space-4);">
+            <div>
+              <label for="username">お名前 (Text Input)</label>
+              <input type="text" id="username" placeholder="例: Aquamarine Explorer">
+            </div>
+            <div>
+              <label for="email">メールアドレス (Email Input)</label>
+              <input type="email" id="email" placeholder="user@example.com">
+            </div>
+            <div>
+              <label for="category">テーマ選択 (Select)</label>
+              <select id="category" onchange="setPalette(this.value)">
+                <option value="aquamarine">アクアマリン・エディション</option>
+                <option value="liquid">リキッド・オリジナル (Neon Magenta & Cyan)</option>
+                <option value="green">エメラルド・グリーン</option>
+                <option value="orange">ドルフィック・オレンジ</option>
+                <option value="sapphire">サファイア・オーシャン</option>
+                <option value="amethyst">アメジスト・パープル</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid" style="margin-bottom: var(--aqua-space-4);">
+            <div>
+              <label for="bio">メッセージ (Textarea)</label>
+              <textarea id="bio" placeholder="素のHTMLタグのままでリッチな液体ガラスの質感が宿ります..."></textarea>
+            </div>
+            <div>
+              <label for="volume">透明度スライダー (Range: &lt;input type="range"&gt;)</label>
+              <input type="range" id="volume" min="0" max="100" value="70">
+              
+              <div style="margin-top: var(--aqua-space-4);">
+                <label>プログレスバー (&lt;progress&gt;)</label>
+                <progress value="68" max="100"></progress>
+              </div>
+
+              <div class="flex items-center gap-4" style="margin-top: var(--aqua-space-4);">
+                <label style="margin: 0; display: flex; align-items: center; cursor: pointer;">
+                  <input type="checkbox" checked> すりガラスを有効化
+                </label>
+                <label style="margin: 0; display: flex; align-items: center; cursor: pointer;">
+                  <input type="radio" name="opt" checked> オプション A
+                </label>
+                <label style="margin: 0; display: flex; align-items: center; cursor: pointer;">
+                  <input type="radio" name="opt"> オプション B
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-right">
+            <input type="submit" value="フォームを送信する">
+          </div>
+        </form>
+      </article>
+
+      <!-- Section: Grid & Window Cards -->
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <article class="interactive">
+          <header>
+            <span>🪟 モダン・グラスカード (Standard Card)</span>
+          </header>
+          <p>
+            標準の <code>&lt;article&gt;</code> や <code>.card</code> は、Web用のUIとして洗練されたクリーンなすりガラスヘッダーと上質なしっとりとした光沢を提供します。
+          </p>
+          <p><mark>ハイライトされたテキスト</mark> や <kbd>Ctrl</kbd> + <kbd>C</kbd> などのキー表記も自然に調和。</p>
+          <footer>
+            <span>ステータス: 安定</span>
+          </footer>
+        </article>
+
+        <!-- Pure Liquid Glass Card with Optical Distortion Refraction -->
+        <article class="liquid interactive" style="padding-bottom: var(--aqua-space-4);">
+          <div class="card-header" style="border: none; padding-bottom: 0;">
+            <div class="user-info">
+              <div class="avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="user-details">
+                <p class="user-name">Jane Doe</p>
+                <p class="user-role">UX Designer</p>
+              </div>
+            </div>
+            <svg style="width: 20px; height: 20px; opacity: 0.6;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </div>
+          <div class="text-center" style="margin: var(--aqua-space-4) 0;">
+            <h3 style="margin-bottom: 4px;">Optical Refraction Glass</h3>
+            <p class="text-muted" style="margin-bottom: var(--aqua-space-4); font-size: var(--aqua-text-sm);">
+              SVG Displacement Filter と極小ブラーによる、白濁しない透き通った水の屈折効果。
+            </p>
+            <button class="primary" style="width: 100%;">Get Started</button>
+          </div>
+          <p class="card-tip">Tip: 背面の動くブロブがクリアに歪んで透け出します。</p>
+        </article>
+
+        <article class="liquid interactive">
+          <header>
+            <span>🌊 流体ガラスコンテナ (.liquid)</span>
+          </header>
+          <p>
+            <code>.liquid</code> クラスを付与すると、有機的な非対称角丸（28px）と多層インナー光彩が有効化されます。
+          </p>
+          <p>
+            背面のブロブアニメーションがガラスの屈折によって美しく透け出します。
+          </p>
+          <footer>
+            <span>FPS: 60 | GPU Shading</span>
+          </footer>
+        </article>
+      </div>
+
+      <!-- Section: Application Showcase (The LiquidCalc Demo) -->
+      <section style="margin: var(--aqua-space-8) 0;">
+        <div class="text-center" style="margin-bottom: var(--aqua-space-6);">
+          <h2>💧 応用例: AquamarineCSSで構築する LiquidCalc</h2>
+          <p class="text-muted" style="max-width: 620px; margin: 0 auto;">
+            フレームワークの汎用コンポーネント（非対称角丸 <code>.card.liquid</code>、彫り込み <code>.well</code>、アクセントボタン <code>.warning</code> / <code>.info</code> / <code>.secondary</code>、およびオプショナルな <code>.window-controls</code>）を組み合わせるだけで、以下のようなリッチな計算機アプリUIも素早く構築できます。
+          </p>
+        </div>
+
+        <!-- Live Interactive Calculator built with generic framework classes -->
+        <div class="card liquid calculator-card interactive">
+          <header>
+            <span>LiquidCalc</span>
+            <div class="window-controls">
+              <button type="button" class="win-btn minimize" title="最小化">−</button>
+              <button type="button" class="win-btn close" title="閉じる">×</button>
+            </div>
+          </header>
+
+          <div class="well">
+            <div class="previous-operand" id="calc-prev"></div>
+            <div class="current-operand" id="calc-curr">0</div>
+          </div>
+
+          <div class="buttons-grid">
+            <button type="button" class="secondary" onclick="calcClear()">AC</button>
+            <button type="button" class="secondary" onclick="calcToggleSign()">±</button>
+            <button type="button" class="secondary" onclick="calcPercent()">%</button>
+            <button type="button" class="warning" onclick="calcOp('÷')">÷</button>
+
+            <button type="button" onclick="calcNum('7')">7</button>
+            <button type="button" onclick="calcNum('8')">8</button>
+            <button type="button" onclick="calcNum('9')">9</button>
+            <button type="button" class="warning" onclick="calcOp('×')">×</button>
+
+            <button type="button" onclick="calcNum('4')">4</button>
+            <button type="button" onclick="calcNum('5')">5</button>
+            <button type="button" onclick="calcNum('6')">6</button>
+            <button type="button" class="warning" onclick="calcOp('-')">−</button>
+
+            <button type="button" onclick="calcNum('1')">1</button>
+            <button type="button" onclick="calcNum('2')">2</button>
+            <button type="button" onclick="calcNum('3')">3</button>
+            <button type="button" class="warning" onclick="calcOp('+')">+</button>
+
+            <button type="button" class="zero" onclick="calcNum('0')">0</button>
+            <button type="button" onclick="calcDot()">.</button>
+            <button type="button" class="info" onclick="calcEqual()">=</button>
+          </div>
+
+          <footer>
+            <span>状態: 稼働中</span>
+            <small class="text-muted">Built with generic framework tokens</small>
+          </footer>
+        </div>
+      </section>
+
+      <!-- Section: Table & Accordion -->
+      <div class="grid">
+        <div>
+          <article>
+            <header>
+              <span>📊 データテーブル (&lt;table&gt;)</span>
+            </header>
+            <table>
+              <thead>
+                <tr>
+                  <th>コンポーネント</th>
+                  <th>デザイン特性</th>
+                  <th>状態</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>水滴ボタン</td>
+                  <td>表面張力レンズハイライト</td>
+                  <td><span class="badge primary">対応済</span></td>
+                </tr>
+                <tr>
+                  <td>アクセントカラー</td>
+                  <td>Primary, Warning, Info, Success, Danger</td>
+                  <td><span class="badge primary">対応済</span></td>
+                </tr>
+                <tr>
+                  <td>流体カード</td>
+                  <td>非対称角丸 & 高屈折</td>
+                  <td><span class="badge primary">対応済</span></td>
+                </tr>
+                <tr>
+                  <td>流体背景ブロブ</td>
+                  <td>@keyframes morphing</td>
+                  <td><span class="badge primary">対応済</span></td>
+                </tr>
+                <tr>
+                  <td>深部ディスプレイ</td>
+                  <td>インセットシャドウ (.well)</td>
+                  <td><span class="badge primary">対応済</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </div>
+
+        <div>
+          <article>
+            <header>
+              <span>📂 アコーディオン (&lt;details&gt;)</span>
+            </header>
+            <details open>
+              <summary>AquamarineCSS をWebサイトで導入するには？</summary>
+              <p style="margin: 0;">
+                <code>aquamarine.css</code> を読み込むだけで、ボタン・カード・フォームが自動で液体ガラスの質感を持ちます。背景ブロブ演出は <code>&lt;body class="liquid-bg"&gt;</code> を指定するだけで動作します。
+              </p>
+            </details>
+            <details>
+              <summary>カラーパレットはどう切り替える？</summary>
+              <p style="margin: 0;">
+                <code>&lt;html data-palette="liquid"&gt;</code> や <code>data-palette="sapphire"</code> などの属性を指定するだけで、ボタンの光沢色から背景ブロブのブレンド色まで一括で連動します。
+              </p>
+            </details>
+            <details>
+              <summary>Web用UIとしての汎用性</summary>
+              <p style="margin: 0;">
+                特殊なアプリタイトルバーに依存せず、普遍的なWebコンポーネント（カード、フォーム、ダイアログ）として自然に機能するように設計されています。
+              </p>
+            </details>
+          </article>
+        </div>
+      </div>
+
+      <!-- Section: Code Block -->
+      <article>
+        <header>
+          <span>📜 クイックスタート</span>
+        </header>
+        <pre><code>&lt;!-- AquamarineCSS 読み込み --&gt;
+&lt;link rel="stylesheet" href="dist/aquamarine.css"&gt;
+
+&lt;!-- 有機的な流体背景 (オプショナル) --&gt;
+&lt;body class="liquid-bg" data-palette="aquamarine"&gt;
+
+  &lt;!-- クリーンなモダン・グラスカード --&gt;
+  &lt;article&gt;
+    &lt;header&gt;カードタイトル&lt;/header&gt;
+    &lt;p&gt;こんにちは、Liquid Glassの世界へ！&lt;/p&gt;
+    &lt;button class="primary"&gt;Primary&lt;/button&gt;
+    &lt;button class="warning"&gt;Warning&lt;/button&gt;
+    &lt;button class="info"&gt;Info&lt;/button&gt;
+  &lt;/article&gt;
+&lt;/body&gt;</code></pre>
+      </article>
+
+    </main>
+
+    <!-- Modal Dialog Demo -->
+    <dialog id="demo-modal">
+      <article class="liquid" style="margin: 0;">
+        <header>
+          <span>🪟 Liquid Glass Dialog</span>
+          <button type="button" onclick="document.getElementById('demo-modal').close()" class="secondary" style="padding: 2px 8px; font-size: var(--aqua-text-xs);">閉じる</button>
+        </header>
+        <div style="padding: var(--aqua-space-4) var(--aqua-space-5);">
+          <h3>ネイティブ &lt;dialog&gt; サポート</h3>
+          <p>
+            JavaScriptの <code>dialog.showModal()</code> を呼ぶだけで、背後の流体ブロブと美しく重なり合うLiquid Glassモーダルが開きます。
+          </p>
+        </div>
+        <footer>
+          <small class="text-muted">Escキーでも閉じられます</small>
+          <button class="primary" onclick="document.getElementById('demo-modal').close()">OK</button>
+        </footer>
+      </article>
+    </dialog>
+
+    <!-- Page Footer -->
+    <footer class="page-footer">
+      <p>
+        💎 <strong>AquamarineCSS</strong> — Crafted with Liquid Glass & Modern Web Optics.
+      </p>
+      <p>
+        Minimal &bull; Semantic-First &bull; MIT License
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Theme Switcher Logic
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+
+    themeBtn.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      themeBtn.textContent = next === 'dark' ? '🌙 Dark' : '☀️ Light';
+    });
+
+    // Palette Switcher Logic
+    function setPalette(name) {
+      html.setAttribute('data-palette', name);
+      const catSelect = document.getElementById('category');
+      if (catSelect && catSelect.value !== name) {
+        catSelect.value = name;
+      }
+    }
+
+    // ==========================================
+    // Interactive Calculator Logic for Showcase
+    // ==========================================
+    let currentOperand = '0';
+    let previousOperand = '';
+    let operation = null;
+    let resetOnNextNumber = false;
+
+    const prevEl = document.getElementById('calc-prev');
+    const currEl = document.getElementById('calc-curr');
+
+    function updateDisplay() {
+      currEl.textContent = currentOperand;
+      prevEl.textContent = operation ? `${previousOperand} ${operation}` : previousOperand;
+    }
+
+    function calcNum(num) {
+      if (resetOnNextNumber) {
+        currentOperand = num;
+        resetOnNextNumber = false;
+      } else {
+        if (currentOperand === '0' && num !== '.') {
+          currentOperand = num;
+        } else {
+          currentOperand += num;
+        }
+      }
+      updateDisplay();
+    }
+
+    function calcDot() {
+      if (resetOnNextNumber) {
+        currentOperand = '0.';
+        resetOnNextNumber = false;
+      } else if (!currentOperand.includes('.')) {
+        currentOperand += '.';
+      }
+      updateDisplay();
+    }
+
+    function calcClear() {
+      currentOperand = '0';
+      previousOperand = '';
+      operation = null;
+      resetOnNextNumber = false;
+      updateDisplay();
+    }
+
+    function calcToggleSign() {
+      if (currentOperand === '0') return;
+      currentOperand = currentOperand.startsWith('-') ? currentOperand.slice(1) : '-' + currentOperand;
+      updateDisplay();
+    }
+
+    function calcPercent() {
+      currentOperand = String(parseFloat(currentOperand) / 100);
+      updateDisplay();
+    }
+
+    function calcOp(op) {
+      if (operation !== null && !resetOnNextNumber) {
+        calcEqual();
+      }
+      previousOperand = currentOperand;
+      operation = op;
+      resetOnNextNumber = true;
+      updateDisplay();
+    }
+
+    function calcEqual() {
+      if (!operation || previousOperand === '') return;
+      const prev = parseFloat(previousOperand);
+      const current = parseFloat(currentOperand);
+      let result = 0;
+
+      switch (operation) {
+        case '+': result = prev + current; break;
+        case '-': result = prev - current; break;
+        case '×': result = prev * current; break;
+        case '÷': result = current !== 0 ? prev / current : 'Error'; break;
+      }
+
+      currentOperand = String(result);
+      operation = null;
+      previousOperand = '';
+      resetOnNextNumber = true;
+      updateDisplay();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+/* ==========================================================================
+   AquamarineCSS - Design Tokens: Spacing & Geometry
+   ========================================================================== */
+
+@layer aqua.tokens {
+  :root {
+    /* Spacing Scale */
+    --aqua-space-0: 0;
+    --aqua-space-1: 0.25rem;  /* 4px */
+    --aqua-space-2: 0.5rem;   /* 8px */
+    --aqua-space-3: 0.75rem;  /* 12px */
+    --aqua-space-4: 1rem;     /* 16px */
+    --aqua-space-5: 1.25rem;  /* 20px */
+    --aqua-space-6: 1.5rem;   /* 24px */
+    --aqua-space-8: 2rem;     /* 32px */
+    --aqua-space-10: 2.5rem;  /* 40px */
+    --aqua-space-12: 3rem;    /* 48px */
+    --aqua-space-16: 4rem;    /* 64px */
+
+    /* Aero Soft Radii */
+    --aqua-radius-xs: 4px;
+    --aqua-radius-sm: 8px;
+    --aqua-radius-md: 12px;
+    --aqua-radius-lg: 18px;
+    --aqua-radius-xl: 24px;
+    --aqua-radius-liquid: 35px 25px 35px 25px;
+    --aqua-radius-blob: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    --aqua-radius-pill: 9999px;
+
+    /* Content Layout Widths */
+    --aqua-container-sm: 640px;
+    --aqua-container-md: 768px;
+    --aqua-container-lg: 1024px;
+    --aqua-container-xl: 1200px;
+  }
+}

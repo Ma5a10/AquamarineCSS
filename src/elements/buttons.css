@@ -1,0 +1,365 @@
+/* ==========================================================================
+   AquamarineCSS - Elements: Buttons & General Accent Color Variations
+   ========================================================================== */
+
+@layer aqua.elements {
+  button,
+  .btn,
+  .glass-button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--aqua-space-2);
+    padding: var(--aqua-space-2) var(--aqua-space-5);
+    font-size: var(--aqua-text-sm);
+    font-weight: var(--aqua-weight-medium);
+    line-height: var(--aqua-leading-normal);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    border-radius: var(--aqua-radius-md);
+    position: relative;
+    overflow: hidden;
+
+    /* Base Crystal-Clear Liquid Glass */
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--aqua-text-main);
+    border: 1px solid var(--aqua-border-glass);
+    border-top: 1px solid rgba(255, 255, 255, 0.45);
+    backdrop-filter: var(--aqua-blur-base);
+    -webkit-backdrop-filter: var(--aqua-blur-base);
+
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.1),
+      inset 0 1px 1px rgba(255, 255, 255, 0.4);
+
+    transition:
+      transform var(--aqua-transition-bounce),
+      box-shadow var(--aqua-transition-bounce),
+      background var(--aqua-transition-fast),
+      border-color var(--aqua-transition-fast);
+  }
+
+  /* Liquid Waterdrop specular lens highlight (subtle top curvature reflection) */
+  button::before,
+  .btn::before,
+  [role="button"]::before,
+  input[type="button"]::before,
+  input[type="submit"]::before,
+  input[type="reset"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    width: 76%;
+    height: 44%;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.05) 80%,
+      transparent 100%
+    );
+    border-radius: 50%;
+    filter: blur(1px);
+    pointer-events: none;
+    opacity: 0.9;
+    transition: opacity var(--aqua-transition-fast);
+  }
+
+  /* Hover State: Spring lift with luminous ambient glow */
+  button:hover,
+  .btn:hover,
+  [role="button"]:hover,
+  input[type="button"]:hover,
+  input[type="submit"]:hover,
+  input[type="reset"]:hover {
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0.09) 100%
+    );
+    border-top-color: rgba(255, 255, 255, 0.85);
+    border-color: var(--aqua-primary-border);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 10px 22px rgba(0, 0, 0, 0.2),
+      0 0 16px var(--aqua-primary-glow),
+      inset 0 1px 2px rgba(255, 255, 255, 0.7);
+  }
+
+  button:hover::before,
+  .btn:hover::before,
+  [role="button"]:hover::before,
+  input[type="button"]:hover::before,
+  input[type="submit"]:hover::before,
+  input[type="reset"]:hover::before {
+    opacity: 1;
+  }
+
+  /* Active / Pressed State */
+  button:active,
+  button.active,
+  .btn:active,
+  .btn.active,
+  [role="button"]:active,
+  input[type="button"]:active,
+  input[type="submit"]:active,
+  input[type="reset"]:active {
+    transform: translateY(1px) scale(0.97);
+    box-shadow:
+      0 3px 8px rgba(0, 0, 0, 0.25),
+      var(--aqua-shadow-inset);
+  }
+
+  button:active::before,
+  .btn:active::before,
+  [role="button"]:active::before {
+    opacity: 0.35;
+  }
+
+  /* Focus Visible */
+  button:focus-visible,
+  .btn:focus-visible,
+  [role="button"]:focus-visible,
+  input[type="button"]:focus-visible,
+  input[type="submit"]:focus-visible,
+  input[type="reset"]:focus-visible {
+    outline: 2px solid var(--aqua-primary);
+    outline-offset: 2px;
+  }
+
+  /* ==========================================================================
+     Semantic & Accent Color Variations
+     ========================================================================== */
+
+  /* 1. Primary: Brand Accent (matches active data-palette) */
+  button.primary,
+  .btn.primary,
+  [role="button"].primary,
+  input[type="submit"] {
+    background: linear-gradient(
+      145deg,
+      hsl(var(--aqua-hue), var(--aqua-sat), 52%) 0%,
+      hsl(var(--aqua-hue), var(--aqua-sat), 36%) 100%
+    );
+    color: var(--aqua-primary-contrast);
+    border-color: var(--aqua-primary-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow:
+      0 6px 16px var(--aqua-primary-glow),
+      inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  }
+
+  button.primary:hover,
+  .btn.primary:hover,
+  [role="button"].primary:hover,
+  input[type="submit"]:hover {
+    background: linear-gradient(
+      145deg,
+      hsl(var(--aqua-hue), 90%, 58%) 0%,
+      hsl(var(--aqua-hue), 85%, 42%) 100%
+    );
+    box-shadow:
+      0 10px 24px var(--aqua-primary-glow),
+      0 0 24px var(--aqua-primary-glow),
+      inset 0 1px 3px rgba(255, 255, 255, 0.8);
+  }
+
+  /* 2. Secondary / Neutral Frosted Surface */
+  button.secondary,
+  .btn.secondary,
+  button.function,
+  .btn.function,
+  [role="button"].secondary {
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    color: var(--aqua-text-muted);
+    border-color: var(--aqua-border-subtle);
+  }
+
+  button.secondary:hover,
+  .btn.secondary:hover,
+  button.function:hover,
+  .btn.function:hover {
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    color: var(--aqua-text-main);
+  }
+
+  /* 3. Warning / Amber Glow (Warm Golden Accent) */
+  button.warning,
+  .btn.warning,
+  button.amber,
+  .btn.amber,
+  button.operator,
+  .btn.operator {
+    background: linear-gradient(145deg, rgba(245, 158, 11, 0.5), rgba(245, 158, 11, 0.18));
+    border-color: rgba(253, 230, 138, 0.45);
+    border-top: 1px solid rgba(253, 230, 138, 0.8);
+    color: #fffbeb;
+    text-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+  }
+
+  button.warning:hover,
+  .btn.warning:hover,
+  button.amber:hover,
+  .btn.amber:hover,
+  button.operator:hover,
+  .btn.operator:hover {
+    background: linear-gradient(145deg, rgba(245, 158, 11, 0.7), rgba(245, 158, 11, 0.3));
+    box-shadow:
+      0 10px 22px rgba(0, 0, 0, 0.2),
+      0 0 20px rgba(245, 158, 11, 0.55),
+      inset 0 1px 2px rgba(255, 255, 255, 0.7);
+  }
+
+  /* 4. Info / Ocean Sky (Cool Blue Accent) */
+  button.info,
+  .btn.info,
+  button.sky,
+  .btn.sky,
+  button.equals,
+  .btn.equals {
+    background: linear-gradient(145deg, rgba(59, 130, 246, 0.55), rgba(59, 130, 246, 0.22));
+    border-color: rgba(191, 219, 254, 0.45);
+    border-top: 1px solid rgba(191, 219, 254, 0.8);
+    color: #eff6ff;
+    text-shadow: 0 0 8px rgba(59, 130, 246, 0.65);
+  }
+
+  button.info:hover,
+  .btn.info:hover,
+  button.sky:hover,
+  .btn.sky:hover,
+  button.equals:hover,
+  .btn.equals:hover {
+    background: linear-gradient(145deg, rgba(59, 130, 246, 0.75), rgba(59, 130, 246, 0.35));
+    box-shadow:
+      0 10px 22px rgba(0, 0, 0, 0.2),
+      0 0 22px rgba(59, 130, 246, 0.65),
+      inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+
+  /* 5. Success (Fresh Emerald Green Accent) */
+  button.success,
+  .btn.success {
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.52), rgba(16, 185, 129, 0.2));
+    border-color: rgba(167, 243, 208, 0.45);
+    border-top: 1px solid rgba(167, 243, 208, 0.8);
+    color: #ecfdf5;
+    text-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  }
+
+  button.success:hover,
+  .btn.success:hover {
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.72), rgba(16, 185, 129, 0.32));
+    box-shadow:
+      0 10px 22px rgba(0, 0, 0, 0.2),
+      0 0 20px rgba(16, 185, 129, 0.6),
+      inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+
+  /* 6. Danger / Crimson (Error or Critical Action) */
+  button.danger,
+  .btn.danger {
+    background: linear-gradient(145deg, rgba(239, 68, 68, 0.55), rgba(239, 68, 68, 0.22));
+    border-color: rgba(254, 202, 202, 0.45);
+    border-top: 1px solid rgba(254, 202, 202, 0.8);
+    color: #fef2f2;
+    text-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+  }
+
+  button.danger:hover,
+  .btn.danger:hover {
+    background: linear-gradient(145deg, rgba(239, 68, 68, 0.75), rgba(239, 68, 68, 0.35));
+    box-shadow:
+      0 10px 22px rgba(0, 0, 0, 0.2),
+      0 0 22px rgba(239, 68, 68, 0.65),
+      inset 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+
+  /* 7. Outline & Ghost Variants */
+  button.outline,
+  .btn.outline,
+  [role="button"].outline {
+    background: transparent;
+    border: 1px solid var(--aqua-primary);
+    color: var(--aqua-primary);
+    backdrop-filter: var(--aqua-blur-subtle);
+  }
+
+  button.outline::before,
+  .btn.outline::before {
+    display: none;
+  }
+
+  button.outline:hover,
+  .btn.outline:hover,
+  [role="button"].outline:hover {
+    background: var(--aqua-primary-glass);
+    color: var(--aqua-primary-hover);
+    box-shadow: 0 0 16px var(--aqua-primary-glow);
+  }
+
+  button.ghost,
+  .btn.ghost {
+    background: transparent;
+    border-color: transparent;
+    color: var(--aqua-text-main);
+    box-shadow: none;
+  }
+
+  button.ghost::before,
+  .btn.ghost::before {
+    display: none;
+  }
+
+  button.ghost:hover,
+  .btn.ghost:hover {
+    background: var(--aqua-surface-glass-subtle);
+    border-color: var(--aqua-border-subtle);
+  }
+
+  /* Shape Modifiers */
+  button.liquid,
+  .btn.liquid {
+    border-radius: var(--aqua-radius-lg);
+  }
+
+  button.pill,
+  .btn.pill {
+    border-radius: var(--aqua-radius-pill);
+    padding-left: var(--aqua-space-6);
+    padding-right: var(--aqua-space-6);
+  }
+
+  /* Disabled State */
+  button:disabled,
+  .btn:disabled,
+  [role="button"][aria-disabled="true"],
+  input[type="button"]:disabled,
+  input[type="submit"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+    filter: grayscale(40%);
+  }
+
+  button:disabled::before,
+  .btn:disabled::before {
+    opacity: 0.1;
+  }
+}

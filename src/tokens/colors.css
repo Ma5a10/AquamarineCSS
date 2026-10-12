@@ -1,0 +1,272 @@
+/* ==========================================================================
+   AquamarineCSS - Design Tokens: Colors & Themes
+   ========================================================================== */
+
+@layer aqua.tokens {
+  :root {
+    /* ------------------------------------------------------------------------
+       Palette 1: Aquamarine (Default) - Transparent turquoise / cyan
+       ------------------------------------------------------------------------ */
+    --aqua-hue: 178;
+    --aqua-sat: 82%;
+    --aqua-lit: 42%;
+
+    --aqua-primary-rgb: 20, 194, 184;
+    --aqua-primary: hsl(var(--aqua-hue), var(--aqua-sat), var(--aqua-lit));
+    --aqua-primary-hover: hsl(var(--aqua-hue), 85%, 48%);
+    --aqua-primary-active: hsl(var(--aqua-hue), 85%, 36%);
+    --aqua-primary-glow: hsla(var(--aqua-hue), 90%, 55%, 0.45);
+    --aqua-primary-glass: hsla(var(--aqua-hue), 85%, 50%, 0.18);
+    --aqua-primary-border: hsla(var(--aqua-hue), 90%, 75%, 0.55);
+    --aqua-primary-contrast: #ffffff;
+
+    /* Semantic Status Colors */
+    --aqua-success: hsl(152, 70%, 42%);
+    --aqua-warning: hsl(38, 92%, 50%);
+    --aqua-danger: hsl(352, 85%, 58%);
+    --aqua-info: hsl(205, 85%, 54%);
+
+    /* ------------------------------------------------------------------------
+       Default Theme: Light (Clean, aero-frosted daylight glass)
+       ------------------------------------------------------------------------ */
+    --aqua-is-dark: 0;
+
+    --aqua-bg-canvas: #edf3f7;
+    --aqua-bg-ambient-1: rgba(20, 194, 184, 0.14);
+    --aqua-bg-ambient-2: rgba(99, 179, 237, 0.18);
+    --aqua-bg-ambient-3: rgba(237, 242, 247, 0.9);
+    --aqua-blob-1: linear-gradient(135deg, rgba(20, 194, 184, 0.65), rgba(56, 189, 248, 0.7));
+    --aqua-blob-2: linear-gradient(135deg, rgba(45, 212, 191, 0.7), rgba(99, 102, 241, 0.6));
+
+    /* Glass Surfaces (Ultra-Clear Liquid Glass) */
+    --aqua-surface-glass: rgba(255, 255, 255, 0.12);
+    --aqua-surface-glass-subtle: rgba(255, 255, 255, 0.06);
+    --aqua-surface-glass-hover: rgba(255, 255, 255, 0.22);
+    --aqua-surface-glass-active: rgba(255, 255, 255, 0.3);
+    --aqua-surface-card: rgba(255, 255, 255, 0.08);
+    --aqua-surface-input: rgba(255, 255, 255, 0.12);
+    --aqua-surface-overlay: rgba(15, 28, 42, 0.45);
+
+    /* Text Colors */
+    --aqua-text-main: #132433;
+    --aqua-text-muted: #536b82;
+    --aqua-text-faint: #88a0b5;
+    --aqua-text-inverse: #ffffff;
+
+    /* Borders & Glass Dividers */
+    --aqua-border-glass: rgba(255, 255, 255, 0.35);
+    --aqua-border-subtle: rgba(19, 36, 51, 0.08);
+    --aqua-border-focus: var(--aqua-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Dark Mode (System preference or [data-theme="dark"])
+     -------------------------------------------------------------------------- */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --aqua-is-dark: 1;
+
+      --aqua-bg-canvas: #091119;
+      --aqua-bg-ambient-1: rgba(20, 194, 184, 0.16);
+      --aqua-bg-ambient-2: rgba(30, 80, 130, 0.22);
+      --aqua-bg-ambient-3: rgba(9, 17, 25, 0.95);
+      --aqua-blob-1: linear-gradient(135deg, rgba(20, 194, 184, 0.5), rgba(14, 116, 144, 0.6));
+      --aqua-blob-2: linear-gradient(135deg, rgba(6, 182, 212, 0.6), rgba(30, 58, 138, 0.55));
+
+      /* Glass Surfaces (Ultra-Clear in Dark Mode) */
+      --aqua-surface-glass: rgba(255, 255, 255, 0.06);
+      --aqua-surface-glass-subtle: rgba(255, 255, 255, 0.03);
+      --aqua-surface-glass-hover: rgba(255, 255, 255, 0.12);
+      --aqua-surface-glass-active: rgba(255, 255, 255, 0.18);
+      --aqua-surface-card: rgba(255, 255, 255, 0.04);
+      --aqua-surface-input: rgba(0, 0, 0, 0.25);
+      --aqua-surface-overlay: rgba(4, 8, 12, 0.7);
+
+      /* Text Colors */
+      --aqua-text-main: #eaf3fa;
+      --aqua-text-muted: #95afc4;
+      --aqua-text-faint: #59738a;
+      --aqua-text-inverse: #091119;
+
+      /* Borders & Glass Dividers */
+      --aqua-border-glass: rgba(255, 255, 255, 0.2);
+      --aqua-border-subtle: rgba(255, 255, 255, 0.07);
+    }
+  }
+
+  [data-theme="dark"] {
+    --aqua-is-dark: 1;
+
+    --aqua-bg-canvas: #091119;
+    --aqua-bg-ambient-1: rgba(20, 194, 184, 0.16);
+    --aqua-bg-ambient-2: rgba(30, 80, 130, 0.22);
+    --aqua-bg-ambient-3: rgba(9, 17, 25, 0.95);
+    --aqua-blob-1: linear-gradient(135deg, rgba(20, 194, 184, 0.5), rgba(14, 116, 144, 0.6));
+    --aqua-blob-2: linear-gradient(135deg, rgba(6, 182, 212, 0.6), rgba(30, 58, 138, 0.55));
+
+    /* Glass Surfaces (Ultra-Clear in Dark Mode) */
+    --aqua-surface-glass: rgba(255, 255, 255, 0.06);
+    --aqua-surface-glass-subtle: rgba(255, 255, 255, 0.03);
+    --aqua-surface-glass-hover: rgba(255, 255, 255, 0.12);
+    --aqua-surface-glass-active: rgba(255, 255, 255, 0.18);
+    --aqua-surface-card: rgba(255, 255, 255, 0.04);
+    --aqua-surface-input: rgba(0, 0, 0, 0.25);
+    --aqua-surface-overlay: rgba(4, 8, 12, 0.7);
+
+    /* Text Colors */
+    --aqua-text-main: #eaf3fa;
+    --aqua-text-muted: #95afc4;
+    --aqua-text-faint: #59738a;
+    --aqua-text-inverse: #091119;
+
+    /* Borders & Glass Dividers */
+    --aqua-border-glass: rgba(255, 255, 255, 0.2);
+    --aqua-border-subtle: rgba(255, 255, 255, 0.07);
+  }
+
+  [data-theme="light"] {
+    --aqua-is-dark: 0;
+
+    --aqua-bg-canvas: #edf3f7;
+    --aqua-bg-ambient-1: rgba(20, 194, 184, 0.14);
+    --aqua-bg-ambient-2: rgba(99, 179, 237, 0.18);
+    --aqua-bg-ambient-3: rgba(237, 242, 247, 0.9);
+    --aqua-blob-1: linear-gradient(135deg, rgba(20, 194, 184, 0.65), rgba(56, 189, 248, 0.7));
+    --aqua-blob-2: linear-gradient(135deg, rgba(45, 212, 191, 0.7), rgba(99, 102, 241, 0.6));
+
+    /* Glass Surfaces (Ultra-Clear in Light Mode) */
+    --aqua-surface-glass: rgba(255, 255, 255, 0.12);
+    --aqua-surface-glass-subtle: rgba(255, 255, 255, 0.06);
+    --aqua-surface-glass-hover: rgba(255, 255, 255, 0.22);
+    --aqua-surface-glass-active: rgba(255, 255, 255, 0.3);
+    --aqua-surface-card: rgba(255, 255, 255, 0.08);
+    --aqua-surface-input: rgba(255, 255, 255, 0.12);
+    --aqua-surface-overlay: rgba(15, 28, 42, 0.45);
+
+    /* Text Colors */
+    --aqua-text-main: #132433;
+    --aqua-text-muted: #536b82;
+    --aqua-text-faint: #88a0b5;
+    --aqua-text-inverse: #ffffff;
+
+    /* Borders & Glass Dividers */
+    --aqua-border-glass: rgba(255, 255, 255, 0.35);
+    --aqua-border-subtle: rgba(19, 36, 51, 0.08);
+    --aqua-border-focus: var(--aqua-primary);
+  }
+
+  /* --------------------------------------------------------------------------
+     Palette: Liquid Original (LiquidCalc signature: Neon Magenta & Vivid Cyan)
+     -------------------------------------------------------------------------- */
+  :root[data-palette="liquid"],
+  [data-palette="liquid"] {
+    --aqua-hue: 191;
+    --aqua-sat: 96%;
+    --aqua-lit: 48%;
+
+    --aqua-primary-rgb: 0, 210, 250;
+    --aqua-primary: hsl(var(--aqua-hue), var(--aqua-sat), var(--aqua-lit));
+    --aqua-primary-hover: hsl(var(--aqua-hue), 100%, 56%);
+    --aqua-primary-active: hsl(var(--aqua-hue), 100%, 40%);
+    --aqua-primary-glow: rgba(0, 241, 254, 0.6);
+    --aqua-primary-glass: rgba(0, 241, 254, 0.22);
+    --aqua-primary-border: rgba(125, 245, 255, 0.7);
+
+    --aqua-bg-ambient-1: rgba(255, 0, 128, 0.22);
+    --aqua-bg-ambient-2: rgba(0, 241, 254, 0.25);
+    --aqua-blob-1: linear-gradient(135deg, rgba(255, 0, 128, 0.75), rgba(51, 40, 202, 0.85));
+    --aqua-blob-2: linear-gradient(135deg, rgba(0, 241, 254, 0.8), rgba(79, 172, 254, 0.75));
+  }
+
+  /* --------------------------------------------------------------------------
+     Palette: Green (Emerald / Spring Fresh)
+     -------------------------------------------------------------------------- */
+  :root[data-palette="green"],
+  [data-palette="green"] {
+    --aqua-hue: 154;
+    --aqua-sat: 78%;
+    --aqua-lit: 39%;
+
+    --aqua-primary-rgb: 22, 177, 105;
+    --aqua-primary: hsl(var(--aqua-hue), var(--aqua-sat), var(--aqua-lit));
+    --aqua-primary-hover: hsl(var(--aqua-hue), 82%, 45%);
+    --aqua-primary-active: hsl(var(--aqua-hue), 82%, 33%);
+    --aqua-primary-glow: hsla(var(--aqua-hue), 88%, 52%, 0.45);
+    --aqua-primary-glass: hsla(var(--aqua-hue), 80%, 48%, 0.18);
+    --aqua-primary-border: hsla(var(--aqua-hue), 85%, 72%, 0.55);
+
+    --aqua-bg-ambient-1: rgba(22, 177, 105, 0.15);
+    --aqua-bg-ambient-2: rgba(16, 185, 129, 0.18);
+    --aqua-blob-1: linear-gradient(135deg, rgba(16, 185, 129, 0.75), rgba(5, 150, 105, 0.8));
+    --aqua-blob-2: linear-gradient(135deg, rgba(52, 211, 153, 0.8), rgba(6, 182, 212, 0.7));
+  }
+
+  /* --------------------------------------------------------------------------
+     Palette: Orange (Dorfic / Neo-Aero Amber Sunset)
+     -------------------------------------------------------------------------- */
+  :root[data-palette="orange"],
+  [data-palette="orange"] {
+    --aqua-hue: 28;
+    --aqua-sat: 94%;
+    --aqua-lit: 48%;
+
+    --aqua-primary-rgb: 238, 122, 12;
+    --aqua-primary: hsl(var(--aqua-hue), var(--aqua-sat), var(--aqua-lit));
+    --aqua-primary-hover: hsl(var(--aqua-hue), 96%, 54%);
+    --aqua-primary-active: hsl(var(--aqua-hue), 96%, 42%);
+    --aqua-primary-glow: hsla(var(--aqua-hue), 96%, 58%, 0.48);
+    --aqua-primary-glass: hsla(var(--aqua-hue), 92%, 52%, 0.20);
+    --aqua-primary-border: hsla(var(--aqua-hue), 95%, 75%, 0.60);
+
+    --aqua-bg-ambient-1: rgba(238, 122, 12, 0.16);
+    --aqua-bg-ambient-2: rgba(245, 158, 11, 0.18);
+    --aqua-blob-1: linear-gradient(135deg, rgba(249, 115, 22, 0.8), rgba(239, 68, 68, 0.75));
+    --aqua-blob-2: linear-gradient(135deg, rgba(245, 158, 11, 0.8), rgba(234, 88, 12, 0.7));
+  }
+
+  /* --------------------------------------------------------------------------
+     Palette: Sapphire (Deep Cobalt Ocean)
+     -------------------------------------------------------------------------- */
+  :root[data-palette="sapphire"],
+  [data-palette="sapphire"] {
+    --aqua-hue: 220;
+    --aqua-sat: 88%;
+    --aqua-lit: 52%;
+
+    --aqua-primary-rgb: 37, 99, 235;
+    --aqua-primary: hsl(var(--aqua-hue), var(--aqua-sat), var(--aqua-lit));
+    --aqua-primary-hover: hsl(var(--aqua-hue), 92%, 58%);
+    --aqua-primary-active: hsl(var(--aqua-hue), 92%, 44%);
+    --aqua-primary-glow: hsla(var(--aqua-hue), 90%, 62%, 0.48);
+    --aqua-primary-glass: hsla(var(--aqua-hue), 85%, 58%, 0.20);
+    --aqua-primary-border: hsla(var(--aqua-hue), 90%, 78%, 0.60);
+
+    --aqua-bg-ambient-1: rgba(37, 99, 235, 0.18);
+    --aqua-bg-ambient-2: rgba(59, 130, 246, 0.22);
+    --aqua-blob-1: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(99, 102, 241, 0.75));
+    --aqua-blob-2: linear-gradient(135deg, rgba(59, 130, 246, 0.85), rgba(14, 165, 233, 0.7));
+  }
+
+  /* --------------------------------------------------------------------------
+     Palette: Amethyst (Ethereal Purple & Magenta)
+     -------------------------------------------------------------------------- */
+  :root[data-palette="amethyst"],
+  [data-palette="amethyst"] {
+    --aqua-hue: 275;
+    --aqua-sat: 80%;
+    --aqua-lit: 54%;
+
+    --aqua-primary-rgb: 168, 85, 247;
+    --aqua-primary: hsl(var(--aqua-hue), var(--aqua-sat), var(--aqua-lit));
+    --aqua-primary-hover: hsl(var(--aqua-hue), 85%, 62%);
+    --aqua-primary-active: hsl(var(--aqua-hue), 85%, 44%);
+    --aqua-primary-glow: hsla(var(--aqua-hue), 90%, 65%, 0.48);
+    --aqua-primary-glass: hsla(var(--aqua-hue), 80%, 60%, 0.22);
+    --aqua-primary-border: hsla(var(--aqua-hue), 90%, 82%, 0.60);
+
+    --aqua-bg-ambient-1: rgba(168, 85, 247, 0.18);
+    --aqua-bg-ambient-2: rgba(236, 72, 153, 0.20);
+    --aqua-blob-1: linear-gradient(135deg, rgba(168, 85, 247, 0.8), rgba(217, 70, 239, 0.75));
+    --aqua-blob-2: linear-gradient(135deg, rgba(192, 132, 252, 0.85), rgba(244, 114, 182, 0.7));
+  }
+}

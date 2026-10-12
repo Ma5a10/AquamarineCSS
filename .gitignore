@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Production / Build output
+dist/
+
+# Vite / Dev Server cache
+.vite/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Editor & IDE settings
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# OS metadata & temporary files
+.DS_Store
+Thumbs.db
+[Dd]esktop.ini
+*.tmp
+*.temp
+
+.agents/

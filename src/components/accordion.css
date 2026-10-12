@@ -1,0 +1,90 @@
+/* ==========================================================================
+   AquamarineCSS - Components: Details & Accordion
+   ========================================================================== */
+
+@layer aqua.components {
+  details {
+    width: 100%;
+    margin-bottom: var(--aqua-space-3);
+    padding: 0 !important; /* Details container must never have inner padding so summary fills 100% */
+    border: 1px solid var(--aqua-border-glass);
+    border-radius: var(--aqua-radius-md);
+    background-color: var(--aqua-surface-glass-subtle);
+    backdrop-filter: var(--aqua-blur-subtle);
+    -webkit-backdrop-filter: var(--aqua-blur-subtle);
+    overflow: hidden;
+    box-sizing: border-box;
+    display: block;
+    transition: background-color var(--aqua-transition-fast);
+  }
+
+  details[open] {
+    background-color: var(--aqua-surface-glass);
+    box-shadow: var(--aqua-glass-elevation-sm);
+  }
+
+  /* Summary element matches 100% width of details container edge-to-edge */
+  summary {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: var(--aqua-space-3) var(--aqua-space-4);
+    font-weight: var(--aqua-weight-medium);
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color var(--aqua-transition-fast);
+    position: relative;
+    border-radius: 0;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 2px solid var(--aqua-text-muted);
+    border-bottom: 2px solid var(--aqua-text-muted);
+    transform: rotate(-45deg);
+    transition: transform var(--aqua-transition-fast);
+    flex-shrink: 0;
+  }
+
+  details[open] summary::after {
+    transform: rotate(45deg);
+    border-color: var(--aqua-primary);
+  }
+
+  /* Hover background fills full width of details with zero gaps */
+  summary:hover {
+    background-color: var(--aqua-primary-glass);
+  }
+
+  /* Content elements (p, div, etc.) match 100% width of details and summary */
+  details > *:not(summary) {
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    margin: 0;
+    padding: var(--aqua-space-4);
+    border-top: 1px solid var(--aqua-border-subtle);
+    animation: aqua-slide-down 0.2s ease-out;
+  }
+
+  @keyframes aqua-slide-down {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

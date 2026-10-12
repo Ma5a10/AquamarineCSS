@@ -1,0 +1,108 @@
+/* ==========================================================================
+   AquamarineCSS - Components: Layout & Navigation
+   ========================================================================== */
+
+@layer aqua.components {
+  /* Container */
+  .container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: var(--aqua-space-4);
+    padding-left: var(--aqua-space-4);
+    max-width: var(--aqua-container-lg);
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-right: var(--aqua-space-6);
+      padding-left: var(--aqua-space-6);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      max-width: var(--aqua-container-xl);
+    }
+  }
+
+  /* Grid System (Pico style auto-responsive grid) */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: var(--aqua-space-4);
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
+     Aero Glass Navigation
+     -------------------------------------------------------------------------- */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--aqua-space-3) var(--aqua-space-4);
+    border-radius: var(--aqua-radius-lg);
+    background-color: var(--aqua-surface-glass);
+    backdrop-filter: var(--aqua-blur-base) var(--aqua-saturate);
+    -webkit-backdrop-filter: var(--aqua-blur-base) var(--aqua-saturate);
+    border: 1px solid var(--aqua-border-glass);
+    box-shadow: var(--aqua-glass-elevation-sm);
+    margin-bottom: var(--aqua-space-6);
+  }
+
+  nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--aqua-space-2);
+  }
+
+  nav ul li {
+    margin-bottom: 0;
+  }
+
+  nav ul a {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--aqua-space-2) var(--aqua-space-3);
+    border-radius: var(--aqua-radius-sm);
+    color: var(--aqua-text-main);
+    text-decoration: none;
+    font-weight: var(--aqua-weight-medium);
+    font-size: var(--aqua-text-sm);
+    transition: var(--aqua-transition-fast);
+  }
+
+  nav ul a:hover {
+    background-color: var(--aqua-primary-glass);
+    color: var(--aqua-primary);
+  }
+
+  nav ul a[aria-current="page"],
+  nav ul a.active {
+    background-color: var(--aqua-surface-glass-active);
+    color: var(--aqua-primary);
+    box-shadow: var(--aqua-highlight-top);
+  }
+
+  /* Header & Footer semantics */
+  header.page-header {
+    padding: var(--aqua-space-8) 0;
+  }
+
+  footer.page-footer {
+    padding: var(--aqua-space-8) 0 var(--aqua-space-12);
+    text-align: center;
+    color: var(--aqua-text-muted);
+    font-size: var(--aqua-text-sm);
+  }
+}

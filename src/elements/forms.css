@@ -1,0 +1,176 @@
+/* ==========================================================================
+   AquamarineCSS - Elements: Forms & Inputs
+   ========================================================================== */
+
+@layer aqua.elements {
+  label {
+    display: block;
+    font-size: var(--aqua-text-sm);
+    font-weight: var(--aqua-weight-medium);
+    margin-bottom: var(--aqua-space-1);
+    color: var(--aqua-text-main);
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="color"]),
+  select,
+  textarea {
+    width: 100%;
+    padding: var(--aqua-space-2) var(--aqua-space-3);
+    font-size: var(--aqua-text-base);
+    color: var(--aqua-text-main);
+    background-color: var(--aqua-surface-input);
+    border: 1px solid var(--aqua-border-subtle);
+    border-radius: var(--aqua-radius-sm);
+    backdrop-filter: var(--aqua-blur-subtle);
+    -webkit-backdrop-filter: var(--aqua-blur-subtle);
+    box-shadow: var(--aqua-shadow-inset);
+    transition:
+      border-color var(--aqua-transition-fast),
+      box-shadow var(--aqua-transition-fast),
+      background-color var(--aqua-transition-fast);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--aqua-text-faint);
+    opacity: 1;
+  }
+
+  /* Focus Ring with Aero Glow */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="button"]):not([type="submit"]):not([type="reset"]):focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--aqua-primary);
+    box-shadow:
+      0 0 0 3px var(--aqua-primary-glow),
+      var(--aqua-shadow-inset);
+    background-color: var(--aqua-surface-glass-hover);
+  }
+
+  /* Disabled State */
+  input:disabled,
+  select:disabled,
+  textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--aqua-surface-glass-subtle);
+  }
+
+  /* Textarea specifics */
+  textarea {
+    min-height: 5rem;
+    resize: vertical;
+  }
+
+  /* Select dropdown arrow */
+  select {
+    appearance: none;
+    cursor: pointer;
+    padding-right: var(--aqua-space-8);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23536b82' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+  }
+
+  /* Fieldset & Legend */
+  fieldset {
+    border: 1px solid var(--aqua-border-glass);
+    border-radius: var(--aqua-radius-md);
+    padding: var(--aqua-space-4);
+    margin-bottom: var(--aqua-space-4);
+    background: var(--aqua-surface-glass-subtle);
+    backdrop-filter: var(--aqua-blur-subtle);
+  }
+
+  legend {
+    padding: 0 var(--aqua-space-2);
+    font-weight: var(--aqua-weight-semibold);
+    font-size: var(--aqua-text-sm);
+    color: var(--aqua-primary);
+  }
+
+  /* Checkbox & Radio */
+  input[type="checkbox"],
+  input[type="radio"] {
+    appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: var(--aqua-space-2);
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: var(--aqua-surface-input);
+    border: 1px solid var(--aqua-border-glass);
+    box-shadow: var(--aqua-shadow-inset);
+    transition: var(--aqua-transition-fast);
+    position: relative;
+    display: inline-grid;
+    place-content: center;
+  }
+
+  input[type="checkbox"] {
+    border-radius: var(--aqua-radius-xs);
+  }
+
+  input[type="radio"] {
+    border-radius: var(--aqua-radius-pill);
+  }
+
+  input[type="checkbox"]:checked,
+  input[type="radio"]:checked {
+    background-color: var(--aqua-primary);
+    border-color: var(--aqua-primary-border);
+    box-shadow:
+      0 0 8px var(--aqua-primary-glow),
+      var(--aqua-highlight-top);
+  }
+
+  input[type="checkbox"]:checked::before {
+    content: "";
+    width: 0.4rem;
+    height: 0.65rem;
+    border: solid var(--aqua-primary-contrast);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+
+  input[type="radio"]:checked::before {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: var(--aqua-radius-pill);
+    background-color: var(--aqua-primary-contrast);
+  }
+
+  /* Range Slider */
+  input[type="range"] {
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--aqua-surface-input);
+    border-radius: var(--aqua-radius-pill);
+    box-shadow: var(--aqua-shadow-inset);
+    cursor: pointer;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: var(--aqua-radius-pill);
+    background-color: var(--aqua-primary);
+    background-image: var(--aqua-gloss-btn-primary);
+    border: 1px solid var(--aqua-primary-border);
+    box-shadow:
+      var(--aqua-highlight-top),
+      0 0 10px var(--aqua-primary-glow),
+      var(--aqua-shadow-xs);
+    transition: transform var(--aqua-transition-fast);
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+}

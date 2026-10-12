@@ -1,0 +1,59 @@
+/* ==========================================================================
+   AquamarineCSS - Components: Modal Dialog
+   ========================================================================== */
+
+@layer aqua.components {
+  dialog {
+    padding: 0;
+    margin: auto;
+    max-width: min(90vw, 560px);
+    width: 100%;
+    border: 1px solid var(--aqua-border-glass);
+    border-radius: var(--aqua-radius-xl);
+    background-color: var(--aqua-surface-card);
+    backdrop-filter: var(--aqua-blur-heavy) var(--aqua-saturate);
+    -webkit-backdrop-filter: var(--aqua-blur-heavy) var(--aqua-saturate);
+    box-shadow: var(--aqua-shadow-window);
+    color: var(--aqua-text-main);
+    overflow: hidden;
+  }
+
+  dialog::backdrop {
+    background-color: var(--aqua-surface-overlay);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: aqua-fade-in 0.2s ease-out;
+  }
+
+  dialog[open] {
+    animation: aqua-dialog-pop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  dialog article {
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  @keyframes aqua-dialog-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.94) translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes aqua-fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
